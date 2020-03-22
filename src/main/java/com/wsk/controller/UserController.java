@@ -72,8 +72,8 @@ public class UserController {
     //进入登录界面
     @RequestMapping(value = "/login.do", method = RequestMethod.GET)
     public String login(HttpServletRequest request, Model model) {
-        String token = TokenProccessor.getInstance().makeToken();
-        log.info("进入登录界面，token为:" + token);
+        String token = TokenProccessor.getInstance().makeToken().toString();
+        //log.info("进入登录界面，token为:" + token);
         request.getSession().setAttribute("token", token);
         model.addAttribute("token", token);
         return "page/login_page";
@@ -154,7 +154,7 @@ public class UserController {
         if (StringUtils.getInstance().isNullOrEmpty(userInformation)) {
             return "redirect:/login.do";
         }
-        String personalInfoToken = TokenProccessor.getInstance().makeToken();
+        String personalInfoToken = TokenProccessor.getInstance().makeToken().toString();
         request.getSession().setAttribute("personalInfoToken", personalInfoToken);
         model.addAttribute("token", personalInfoToken);
         model.addAttribute("userInformation", userInformation);
@@ -244,7 +244,7 @@ public class UserController {
         if (!StringUtils.getInstance().isNullOrEmpty(error)) {
             model.addAttribute("error", "error");
         }
-        String publishUserWantToken = TokenProccessor.getInstance().makeToken();
+        String publishUserWantToken = TokenProccessor.getInstance().makeToken().toString();
         request.getSession().setAttribute("publishUserWantToken", publishUserWantToken);
         model.addAttribute("token", publishUserWantToken);
         model.addAttribute("userInformation", userInformation);
@@ -259,7 +259,7 @@ public class UserController {
         if (StringUtils.getInstance().isNullOrEmpty(userInformation)) {
             return "redirect:/login.do";
         }
-        String publishUserWantToken = TokenProccessor.getInstance().makeToken();
+        String publishUserWantToken = TokenProccessor.getInstance().makeToken().toString();
         request.getSession().setAttribute("publishUserWantToken", publishUserWantToken);
         model.addAttribute("token", publishUserWantToken);
         model.addAttribute("userInformation", userInformation);
@@ -691,7 +691,7 @@ public class UserController {
                 return "page/publish_product";
             }
             shopInformation.setId(sid);
-            goodsToken = TokenProccessor.getInstance().makeToken();
+            goodsToken = TokenProccessor.getInstance().makeToken().toString();
             request.getSession().setAttribute("goodsToken", goodsToken);
             model.addAttribute("token", goodsToken);
             model.addAttribute("shopInformation", shopInformation);
@@ -719,7 +719,7 @@ public class UserController {
                 e.printStackTrace();
                 return "redirect:publish_product.do";
             }
-            goodsToken = TokenProccessor.getInstance().makeToken();
+            goodsToken = TokenProccessor.getInstance().makeToken().toString();
             request.getSession().setAttribute("goodsToken", goodsToken);
             model.addAttribute("token", goodsToken);
             shopInformation = shopInformationService.selectByPrimaryKey(id);
@@ -739,7 +739,7 @@ public class UserController {
         if (StringUtils.getInstance().isNullOrEmpty(userInformation)) {
             return "redirect:/login.do";
         }
-        String goodsToken = TokenProccessor.getInstance().makeToken();
+        String goodsToken = TokenProccessor.getInstance().makeToken().toString();
         request.getSession().setAttribute("goodsToken", goodsToken);
         model.addAttribute("token", goodsToken);
         ShopInformation shopInformation = shopInformationService.selectByPrimaryKey(id);

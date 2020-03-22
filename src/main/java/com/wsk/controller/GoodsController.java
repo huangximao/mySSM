@@ -66,7 +66,7 @@ public class GoodsController {
             e.printStackTrace();
             return "redirect:/login.do";
         }
-        String goodsToken = TokenProccessor.getInstance().makeToken();
+        String goodsToken = TokenProccessor.getInstance().makeToken().toString();
         request.getSession().setAttribute("goodsToken", goodsToken);
         model.addAttribute("shopInformation", new ShopInformation());
         model.addAttribute("action", 1);
@@ -138,7 +138,7 @@ public class GoodsController {
                 shopContextBeans.add(shopContextBean);
             }
             String sort = getSort(shopInformation.getSort());
-            String goodsToken = TokenProccessor.getInstance().makeToken();
+            String goodsToken = TokenProccessor.getInstance().makeToken().toString();
             request.getSession().setAttribute("goodsToken", goodsToken);
             model.addAttribute("token", goodsToken);
             model.addAttribute("sort", sort);

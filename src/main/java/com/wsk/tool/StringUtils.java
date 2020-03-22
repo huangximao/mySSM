@@ -1,7 +1,9 @@
 package com.wsk.tool;
 
 import net.coobird.thumbnailator.Thumbnails;
-import sun.misc.BASE64Encoder;
+//import sun.misc.BASE64Encoder;
+import java.util.Base64.Encoder;
+import java.util.Base64.Decoder;
 
 import java.io.*;
 import java.security.MessageDigest;
@@ -64,8 +66,9 @@ public class StringUtils {
         String result = "";
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
-            BASE64Encoder base64Encoder = new BASE64Encoder();
-            result = base64Encoder.encode(md5.digest(str.getBytes("UTF-8")));
+            //BASE64Encoder base64Encoder = new BASE64Encoder();
+            Base64.Encoder base64Encoder = Base64.getEncoder();
+            result = base64Encoder.encode(md5.digest(str.getBytes("UTF-8"))).toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
